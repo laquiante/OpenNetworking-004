@@ -102,4 +102,13 @@
     - name: kick-it
       shell: systemctl restart frr
       
-
+- hosts: spine
+  name: Configure /etc/frr/daemon
+  become: yes
+  tasks:
+    - name: zebra und daemons
+      copy:
+        src: /home/cumulus/OpenNetworking-002/config/daemons
+        dest: /etc/frr/daemons
+    - name: kick-it
+      shell: systemctl restart frr
