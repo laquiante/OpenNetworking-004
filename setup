@@ -77,7 +77,7 @@
       
 # Spine02 IF Datei
  
-- hosts: spine2
+- hosts: spine02
   name: Schnittstelle fuer BGP unnumbered
   become: yes
   tasks:
