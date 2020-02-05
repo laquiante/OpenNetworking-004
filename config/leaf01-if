@@ -15,7 +15,7 @@ iface eth0 inet dhcp
 # Zum Server
 auto swp1
 iface swp1
-    bridge-access42
+    bridge-access 42
 
 # BGP IPv6
 auto swp51
