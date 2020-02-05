@@ -95,32 +95,11 @@
   name: Configure /etc/frr/daemon
   become: yes
   tasks:
-    - copy:
+    - name: zebra und daemons
+      copy:
         src: /home/cumulus/OpenNetworking-002/config/daemons
         dest: /etc/frr/daemons
-      notify:
-        - frr_restart
-
-    - name: frr_restart
-      service:
-        name=frr
-        state=restarted
-        enabled=yes
-      listen: "frr_restart"
+    - name: kick-it
+      shell: systemctl restart frr
       
-- hosts: spine
-  name: Configure /etc/frr/daemon
-  become: yes
-  tasks:
-    - copy:
-        src: /home/cumulus/OpenNetworking-002/config/daemons
-        dest: /etc/frr/daemons
-      notify:
-        - frr_restart
 
-    - name: frr_restart
-      service:
-        name=frr
-        state=restarted
-        enabled=yes
-      listen: "frr_restart"
