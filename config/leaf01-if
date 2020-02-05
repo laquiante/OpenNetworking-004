@@ -1,0 +1,45 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# 05-FEB-2020, ALQ
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+  address 10.0.0.11/32
+
+# Die OOB Schnittstelle
+auto eth0
+iface eth0 inet dhcp
+
+# Zum Server
+auto swp1
+iface swp1
+    bridge-access42
+
+# BGP IPv6
+auto swp51
+iface swp51
+
+# VxLAN
+auto vni-42
+iface vni-42
+    vxlan-id 10042
+    vxlan-local-tunnelip 10.0.0.11
+    bridge-access 42
+    vxlan-remoteip 10.0.0.14
+
+# VLAN aware linux bridge
+auto bridge
+iface bridge
+    bridge-ports swp1 vni-42
+    bridge-vids 1 42
+    bridge-vlan-aware yes
+
+# SVI VLAN 42 inkl. anycast IPv4
+auto vlan42
+iface vlan42
+    address 192.168.10.1/24
+    address-virtual 00:00:00:00:00:0A 192.168.10.254/24
+    vlan-id 42
+    vlan-raw-device bridge
