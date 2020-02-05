@@ -58,3 +58,69 @@
     # aktivieren
     - name: Durchstarten der Schnittstelle
       shell: /sbin/ifreload -a
+      
+ # Spines
+ 
+ # Spine01 IF Datei
+ 
+- hosts: spine01
+  name: Schnittstelle fuer BGP unnumbered
+  become: yes
+  tasks:
+    - name: IFs for BGP unmumbered
+      copy:
+        src: /home/cumulus/OpenNetworking-002/config/spine01-if
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: Durchstarten der Schnittstelle
+      shell: /sbin/ifreload -a
+      
+# Spine02 IF Datei
+ 
+- hosts: spine2
+  name: Schnittstelle fuer BGP unnumbered
+  become: yes
+  tasks:
+    - name: IFs for BGP unmumbered
+      copy:
+        src: /home/cumulus/OpenNetworking-002/config/spine02-if
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: Durchstarten der Schnittstelle
+      shell: /sbin/ifreload -a 
+      
+# FRR Daemon Datei
+
+- hosts: leaf
+  name: Configure /etc/frr/daemon
+  become: yes
+  tasks:
+    - copy:
+        src: /home/cumulus/OpenNetworking-002/config/daemons
+        dest: /etc/frr/daemons
+      notify:
+        - frr_restart
+
+    - name: frr_restart
+      service:
+        name=frr
+        state=restarted
+        enabled=yes
+      listen: "frr_restart"
+      
+- hosts: spine
+  name: Configure /etc/frr/daemon
+  become: yes
+  tasks:
+    - copy:
+        src: /home/cumulus/OpenNetworking-002/config/daemons
+        dest: /etc/frr/daemons
+      notify:
+        - frr_restart
+
+    - name: frr_restart
+      service:
+        name=frr
+        state=restarted
+        enabled=yes
+      listen: "frr_restart"
