@@ -47,7 +47,7 @@
       
  # Leaf04 IF Datei
  
- - hosts: leaf01
+- hosts: leaf01
   name: Schnittstelle fuer BGP unnumbered
   become: yes
   tasks:
