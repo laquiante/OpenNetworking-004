@@ -19,7 +19,7 @@
       
 # Leaf02 IF Datei
 
-- hosts: leaf0
+- hosts: leaf02
   name: Schnittstelle fuer BGP unnumbered
   become: yes
   tasks:
@@ -33,13 +33,13 @@
       
 # Leaf03 IF Datei
 
-- hosts: leaf3
+- hosts: leaf03
   name: Schnittstelle fuer BGP unnumbered
   become: yes
   tasks:
     - name: IFs for BGP unmumbered
       copy:
-        src: /home/cumulus/OpenNetworking-002/config/leaf01-if
+        src: /home/cumulus/OpenNetworking-002/config/leaf03-if
         dest: /etc/network/interfaces
     # aktivieren
     - name: Durchstarten der Schnittstelle
@@ -47,7 +47,7 @@
       
  # Leaf04 IF Datei
  
-- hosts: leaf01
+- hosts: leaf4
   name: Schnittstelle fuer BGP unnumbered
   become: yes
   tasks:
