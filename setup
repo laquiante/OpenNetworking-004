@@ -1,0 +1,18 @@
+---
+
+# 05-FEB-2020, ALQ
+# DC-DCI-DC
+
+# Spine01  IF Datei
+
+- hosts: leaf01
+  name: Schnittstelle fuer BGP unnumbered
+  become: yes
+  tasks:
+    - name: IFs for BGP unmumbered
+      copy:
+        src: /home/cumulus/OpenNetworking-002/config/leaf01-if
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: Durchstarten der Schnittstelle
+      shell: /sbin/ifreload -a
