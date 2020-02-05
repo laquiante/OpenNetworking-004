@@ -9,7 +9,7 @@ interface swp1
 !
 interface swp2
 !
-router bgp 65000
+router bgp 4200000000
  bgp router-id 10.0.0.21
  neighbor swp1 interface remote-as external
  neighbor swp2 interface remote-as external
@@ -17,6 +17,3 @@ router bgp 65000
  address-family ipv4 unicast
   redistribute connected
  exit-address-family
-
-!
-© 2020 GitHub, Inc.
