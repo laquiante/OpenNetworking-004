@@ -1,0 +1,21 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# 05-FEB-2020, ALQ
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+  address 10.0.0.13/32
+
+# Die OOB Schnittstelle
+auto eth0
+iface eth0 inet dhcp
+
+# DCI 
+auto swp1
+iface swp1
+
+# BGP IPv6
+auto swp51
+iface swp51
