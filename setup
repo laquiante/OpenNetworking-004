@@ -211,3 +211,19 @@
         
     - name: kick-it
       shell: systemctl reload frr
+
+- hosts: server01
+  name: Configure /e/n/i
+  become: yes
+  tasks:
+    - name: Entfernen der alten Datei
+      file:
+        path: '/etc/network/interfaces'
+        state: absent
+
+    - copy:
+        src: /home/cumulus/OpenNetworking-002/config/server01-if
+        dest: /etc/network/interfaces
+        
+    - name: kick-it
+      shell: systemctl restart networking
