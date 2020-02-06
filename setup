@@ -112,3 +112,23 @@
         dest: /etc/frr/daemons
     - name: kick-it
       shell: systemctl restart frr
+      
+# Einspielen der Router Konfiguration
+# und "reloading" des FRR-Daemons
+
+- hosts: spine01
+  name: Configure /etc/frr/frr.conf
+  become: yes
+  tasks:
+    - name: Entfernen der alten Datei
+      file:
+        path: '/etc/frr.conf'
+        state: absent
+
+    - copy:
+        src: /home/cumulus/OpenNetworking-002/config/spine01-frr
+        dest: /etc/frr/frr.conf
+        
+    - name: kick-it
+      shell: systemctl reload frr
+        
