@@ -242,7 +242,7 @@
         state: absent
 
     - copy:
-        src: /home/cumulus/OpenNetworking-002/config/server2-if
+        src: /home/cumulus/OpenNetworking-002/config/server02-if
         dest: /etc/network/interfaces
         
     - name: Apply Interface Configuration Delta
