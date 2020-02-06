@@ -1,6 +1,6 @@
 ---
 
-# 05-FEB-2020, ALQ
+# 06-FEB-2020, ALQ
 # DC-DCI-DC
 
 # Leaf01  IF Datei
@@ -132,3 +132,50 @@
     - name: kick-it
       shell: systemctl reload frr
         
+- hosts: spine2
+  name: Configure /etc/frr/frr.conf
+  become: yes
+  tasks:
+    - name: Entfernen der alten Datei
+      file:
+        path: '/etc/frr.conf'
+        state: absent
+
+    - copy:
+        src: /home/cumulus/OpenNetworking-002/config/spine02-frr
+        dest: /etc/frr/frr.conf
+        
+    - name: kick-it
+      shell: systemctl reload frr
+
+- hosts: leaf01
+  name: Configure /etc/frr/frr.conf
+  become: yes
+  tasks:
+    - name: Entfernen der alten Datei
+      file:
+        path: '/etc/frr.conf'
+        state: absent
+
+    - copy:
+        src: /home/cumulus/OpenNetworking-002/config/leaf01-frr
+        dest: /etc/frr/frr.conf
+        
+    - name: kick-it
+      shell: systemctl reload frr
+      
+- hosts: leaf02
+  name: Configure /etc/frr/frr.conf
+  become: yes
+  tasks:
+    - name: Entfernen der alten Datei
+      file:
+        path: '/etc/frr.conf'
+        state: absent
+
+    - copy:
+        src: /home/cumulus/OpenNetworking-002/config/leaf02-frr
+        dest: /etc/frr/frr.conf
+        
+    - name: kick-it
+      shell: systemctl reload frr
