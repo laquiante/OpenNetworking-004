@@ -226,7 +226,11 @@
         dest: /etc/network/interfaces
         
     - name: Apply Interface Configuration Delta
-      shell: reboot
+      shell: ip link set eth1 down
+      
+    - name: Apply Interface Configuration Delta
+      shell: ip link set eth1 up
+      
      
 - hosts: server02
   name: Configure /e/n/i
@@ -242,4 +246,7 @@
         dest: /etc/network/interfaces
         
     - name: Apply Interface Configuration Delta
-      shell: reboot
+      shell: ip link set eth1 down
+      
+    - name: Apply Interface Configuration Delta
+      shell: ip link set eth1 up
