@@ -132,7 +132,7 @@
     - name: kick-it
       shell: systemctl reload frr
         
-- hosts: spine2
+- hosts: spine02
   name: Configure /etc/frr/frr.conf
   become: yes
   tasks:
