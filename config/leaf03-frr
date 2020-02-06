@@ -1,0 +1,16 @@
+hostname leaf03
+username cumulus nopassword
+!
+service integrated-vtysh-config
+!
+log syslog informational
+!
+interface swp51
+!
+router bgp 42001001
+ bgp router-id 10.0.0.13
+ neighbor swp1 interface remote-as external
+ !
+ address-family ipv4 unicast
+  redistribute connected
+ exit-address-family
