@@ -9,7 +9,7 @@ interface swp51
 !
 router bgp 42001002
  bgp router-id 10.0.0.14
- neighbor swp1 interface remote-as external
+ neighbor swp51 interface remote-as external
  !
  address-family ipv4 unicast
   redistribute connected
