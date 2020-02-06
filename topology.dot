@@ -4,9 +4,9 @@ graph vx {
  "leaf01" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.7.11" memory="768" config="./helper_scripts/config_switch.sh" ]
  "leaf02" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.7.11" memory="768" config="./helper_scripts/config_switch.sh" ]
 
- "spine02" [function="spine" os="CumulusCommunity/cumulus-vx" version="4.0.0" memory="768" config="./helper_scripts/config_switch.sh" ]
- "leaf03" [function="leaf" os="CumulusCommunity/cumulus-vx" version="4.0.0" memory="768" config="./helper_scripts/config_switch.sh" ]
- "leaf04" [function="leaf" os="CumulusCommunity/cumulus-vx" version="4.0.0" memory="768" config="./helper_scripts/config_switch.sh" ]
+ "spine02" [function="spine" os="CumulusCommunity/cumulus-vx" version="3.7.11" memory="768" config="./helper_scripts/config_switch.sh" ]
+ "leaf03" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.7.11" memory="768" config="./helper_scripts/config_switch.sh" ]
+ "leaf04" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.7.11" memory="768" config="./helper_scripts/config_switch.sh" ]
 
  "server01" [function="host" os="yk0/ubuntu-xenial" memory="512" config="./helper_scripts/config_server.sh" ]
  "server02" [function="host" os="yk0/ubuntu-xenial" memory="512" config="./helper_scripts/config_server.sh" ]
@@ -24,7 +24,7 @@ graph vx {
 
 
  "server01":"eth1" -- "leaf01":"swp1" [left_mac="00:03:00:11:11:01"]
- "server02":"eth" -- "leaf04":"swp1" [left_mac="00:03:00:11:11:02"]
+ "server02":"eth1" -- "leaf04":"swp1" [left_mac="00:03:00:11:11:02"]
 
  "oob-mgmt-server":"eth1" -- "oob-mgmt-switch":"swp1" [right_mac="a0:00:00:00:00:61"]
 
