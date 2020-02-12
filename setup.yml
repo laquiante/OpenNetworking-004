@@ -239,6 +239,11 @@
   name: Configure /e/n/i
   become: yes
   tasks:
+  
+    - apt: 
+        name: ifupdown2
+        state: present
+  
     - name: Entfernen der alten Datei
       file:
         path: '/etc/network/interfaces'
@@ -248,8 +253,7 @@
         src: /home/cumulus/OpenNetworking-003/config/server02-if
         dest: /etc/network/interfaces
         
-    - name: Apply Interface Configuration Delta
-      shell: ip link set eth1 down
-      
-    - name: Apply Interface Configuration Delta
-      shell: ip link set eth1 up
+    - shell: if down eth1
+    - shell: if up eth1
+    
+    - shell: "ifreload -a"
