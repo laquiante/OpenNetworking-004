@@ -9,8 +9,19 @@ interface swp51
 !
 router bgp 42001002
  bgp router-id 10.0.0.14
+ bgp bestpath as-path multipath-relax
  neighbor swp51 interface remote-as external
  !
  address-family ipv4 unicast
-  redistribute connected
+  redistribute connected  route-map LO_ROUTES
  exit-address-family
+ !
+ address-family l2vpn evpn
+  neighbor swp51 activate
+  advertise-all-vni
+ exit-address-family
+ !
+ route-map LO_ROUTES permit 10
+  match interface lo
+!
+
