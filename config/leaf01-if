@@ -27,7 +27,6 @@ iface vni-42
     vxlan-id 10042
     vxlan-local-tunnelip 10.0.0.11
     bridge-access 42
-    vxlan-remoteip 10.0.0.14
 
 # VLAN aware linux bridge
 auto bridge
