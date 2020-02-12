@@ -230,8 +230,8 @@
         src: /home/cumulus/OpenNetworking-003/config/server01-if
         dest: /etc/network/interfaces
         
-    - shell: if down eth1
-    - shell: if up eth1
+    - shell: ifdown eth1
+    - shell: ifup eth1
 
     - shell: "ifreload -a"        
 
@@ -253,7 +253,7 @@
         src: /home/cumulus/OpenNetworking-003/config/server02-if
         dest: /etc/network/interfaces
         
-    - shell: if down eth1
-    - shell: if up eth1
+    - shell: ifdown eth1
+    - shell: ifup eth1
     
     - shell: "ifreload -a"
