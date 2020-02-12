@@ -230,8 +230,8 @@
         src: /home/cumulus/OpenNetworking-003/config/server01-if
         dest: /etc/network/interfaces
         
-    - shell: ip link set eth1 down
-    - shell: ip link set eth1 up
+    - shell: if down eth1
+    - shell: if up eth1
 
     - shell: "ifreload -a"        
 
