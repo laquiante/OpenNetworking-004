@@ -11,7 +11,7 @@
   tasks:
     - name: IFs for BGP unmumbered
       copy:
-        src: /home/cumulus/OpenNetworking-002/config/leaf01-if
+        src: /home/cumulus/OpenNetworking-003/config/leaf01-if
         dest: /etc/network/interfaces
     # aktivieren
     - name: Durchstarten der Schnittstelle
@@ -25,7 +25,7 @@
   tasks:
     - name: IFs for BGP unmumbered
       copy:
-        src: /home/cumulus/OpenNetworking-002/config/leaf02-if
+        src: /home/cumulus/OpenNetworking-003/config/leaf02-if
         dest: /etc/network/interfaces
     # aktivieren
     - name: Durchstarten der Schnittstelle
@@ -39,7 +39,7 @@
   tasks:
     - name: IFs for BGP unmumbered
       copy:
-        src: /home/cumulus/OpenNetworking-002/config/leaf03-if
+        src: /home/cumulus/OpenNetworking-003/config/leaf03-if
         dest: /etc/network/interfaces
     # aktivieren
     - name: Durchstarten der Schnittstelle
@@ -53,7 +53,7 @@
   tasks:
     - name: IFs for BGP unmumbered
       copy:
-        src: /home/cumulus/OpenNetworking-002/config/leaf04-if
+        src: /home/cumulus/OpenNetworking-003/config/leaf04-if
         dest: /etc/network/interfaces
     # aktivieren
     - name: Durchstarten der Schnittstelle
@@ -69,7 +69,7 @@
   tasks:
     - name: IFs for BGP unmumbered
       copy:
-        src: /home/cumulus/OpenNetworking-002/config/spine01-if
+        src: /home/cumulus/OpenNetworking-003/config/spine01-if
         dest: /etc/network/interfaces
     # aktivieren
     - name: Durchstarten der Schnittstelle
@@ -83,7 +83,7 @@
   tasks:
     - name: IFs for BGP unmumbered
       copy:
-        src: /home/cumulus/OpenNetworking-002/config/spine02-if
+        src: /home/cumulus/OpenNetworking-003/config/spine02-if
         dest: /etc/network/interfaces
     # aktivieren
     - name: Durchstarten der Schnittstelle
@@ -97,7 +97,7 @@
   tasks:
     - name: zebra und daemons
       copy:
-        src: /home/cumulus/OpenNetworking-002/config/daemons
+        src: /home/cumulus/OpenNetworking-003/config/daemons
         dest: /etc/frr/daemons
     - name: kick-it
       shell: systemctl restart frr
@@ -108,7 +108,7 @@
   tasks:
     - name: zebra und daemons
       copy:
-        src: /home/cumulus/OpenNetworking-002/config/daemons
+        src: /home/cumulus/OpenNetworking-003/config/daemons
         dest: /etc/frr/daemons
     - name: kick-it
       shell: systemctl restart frr
@@ -126,7 +126,7 @@
         state: absent
 
     - copy:
-        src: /home/cumulus/OpenNetworking-002/config/spine01-frr
+        src: /home/cumulus/OpenNetworking-003/config/spine01-frr
         dest: /etc/frr/frr.conf
         
     - name: kick-it
@@ -142,7 +142,7 @@
         state: absent
 
     - copy:
-        src: /home/cumulus/OpenNetworking-002/config/spine02-frr
+        src: /home/cumulus/OpenNetworking-003/config/spine02-frr
         dest: /etc/frr/frr.conf
         
     - name: kick-it
@@ -158,7 +158,7 @@
         state: absent
 
     - copy:
-        src: /home/cumulus/OpenNetworking-002/config/leaf01-frr
+        src: /home/cumulus/OpenNetworking-003/config/leaf01-frr
         dest: /etc/frr/frr.conf
         
     - name: kick-it
@@ -174,7 +174,7 @@
         state: absent
 
     - copy:
-        src: /home/cumulus/OpenNetworking-002/config/leaf02-frr
+        src: /home/cumulus/OpenNetworking-003/config/leaf02-frr
         dest: /etc/frr/frr.conf
         
     - name: kick-it
@@ -190,7 +190,7 @@
         state: absent
 
     - copy:
-        src: /home/cumulus/OpenNetworking-002/config/leaf03-frr
+        src: /home/cumulus/OpenNetworking-003/config/leaf03-frr
         dest: /etc/frr/frr.conf
         
     - name: kick-it
@@ -206,7 +206,7 @@
         state: absent
 
     - copy:
-        src: /home/cumulus/OpenNetworking-002/config/leaf04-frr
+        src: /home/cumulus/OpenNetworking-003/config/leaf04-frr
         dest: /etc/frr/frr.conf
         
     - name: kick-it
@@ -227,7 +227,7 @@
         state: absent
 
     - copy:
-        src: /home/cumulus/OpenNetworking-002/config/server01-if
+        src: /home/cumulus/OpenNetworking-003/config/server01-if
         dest: /etc/network/interfaces
         
     - shell: "ifreload -a"        
@@ -242,7 +242,7 @@
         state: absent
 
     - copy:
-        src: /home/cumulus/OpenNetworking-002/config/server02-if
+        src: /home/cumulus/OpenNetworking-003/config/server02-if
         dest: /etc/network/interfaces
         
     - name: Apply Interface Configuration Delta
