@@ -1,0 +1,252 @@
+---
+
+# 12-FEB-2020, ALQ
+# DC-DCI-DC
+
+# Leaf01  IF Datei
+
+- hosts: leaf01
+  name: Schnittstelle fuer BGP unnumbered
+  become: yes
+  tasks:
+    - name: IFs for BGP unmumbered
+      copy:
+        src: /home/cumulus/OpenNetworking-002/config/leaf01-if
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: Durchstarten der Schnittstelle
+      shell: /sbin/ifreload -a
+      
+# Leaf02 IF Datei
+
+- hosts: leaf02
+  name: Schnittstelle fuer BGP unnumbered
+  become: yes
+  tasks:
+    - name: IFs for BGP unmumbered
+      copy:
+        src: /home/cumulus/OpenNetworking-002/config/leaf02-if
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: Durchstarten der Schnittstelle
+      shell: /sbin/ifreload -a
+      
+# Leaf03 IF Datei
+
+- hosts: leaf03
+  name: Schnittstelle fuer BGP unnumbered
+  become: yes
+  tasks:
+    - name: IFs for BGP unmumbered
+      copy:
+        src: /home/cumulus/OpenNetworking-002/config/leaf03-if
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: Durchstarten der Schnittstelle
+      shell: /sbin/ifreload -a
+      
+ # Leaf04 IF Datei
+ 
+- hosts: leaf04
+  name: Schnittstelle fuer BGP unnumbered
+  become: yes
+  tasks:
+    - name: IFs for BGP unmumbered
+      copy:
+        src: /home/cumulus/OpenNetworking-002/config/leaf04-if
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: Durchstarten der Schnittstelle
+      shell: /sbin/ifreload -a
+      
+ # Spines
+ 
+ # Spine01 IF Datei
+ 
+- hosts: spine01
+  name: Schnittstelle fuer BGP unnumbered
+  become: yes
+  tasks:
+    - name: IFs for BGP unmumbered
+      copy:
+        src: /home/cumulus/OpenNetworking-002/config/spine01-if
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: Durchstarten der Schnittstelle
+      shell: /sbin/ifreload -a
+      
+# Spine02 IF Datei
+ 
+- hosts: spine02
+  name: Schnittstelle fuer BGP unnumbered
+  become: yes
+  tasks:
+    - name: IFs for BGP unmumbered
+      copy:
+        src: /home/cumulus/OpenNetworking-002/config/spine02-if
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: Durchstarten der Schnittstelle
+      shell: /sbin/ifreload -a 
+      
+# FRR Daemon Datei
+
+- hosts: leaf
+  name: Configure /etc/frr/daemon
+  become: yes
+  tasks:
+    - name: zebra und daemons
+      copy:
+        src: /home/cumulus/OpenNetworking-002/config/daemons
+        dest: /etc/frr/daemons
+    - name: kick-it
+      shell: systemctl restart frr
+      
+- hosts: spine
+  name: Configure /etc/frr/daemon
+  become: yes
+  tasks:
+    - name: zebra und daemons
+      copy:
+        src: /home/cumulus/OpenNetworking-002/config/daemons
+        dest: /etc/frr/daemons
+    - name: kick-it
+      shell: systemctl restart frr
+      
+# Einspielen der Router Konfiguration
+# und "reloading" des FRR-Daemons
+
+- hosts: spine01
+  name: Configure /etc/frr/frr.conf
+  become: yes
+  tasks:
+    - name: Entfernen der alten Datei
+      file:
+        path: '/etc/frr.conf'
+        state: absent
+
+    - copy:
+        src: /home/cumulus/OpenNetworking-002/config/spine01-frr
+        dest: /etc/frr/frr.conf
+        
+    - name: kick-it
+      shell: systemctl reload frr
+        
+- hosts: spine02
+  name: Configure /etc/frr/frr.conf
+  become: yes
+  tasks:
+    - name: Entfernen der alten Datei
+      file:
+        path: '/etc/frr.conf'
+        state: absent
+
+    - copy:
+        src: /home/cumulus/OpenNetworking-002/config/spine02-frr
+        dest: /etc/frr/frr.conf
+        
+    - name: kick-it
+      shell: systemctl reload frr
+
+- hosts: leaf01
+  name: Configure /etc/frr/frr.conf
+  become: yes
+  tasks:
+    - name: Entfernen der alten Datei
+      file:
+        path: '/etc/frr.conf'
+        state: absent
+
+    - copy:
+        src: /home/cumulus/OpenNetworking-002/config/leaf01-frr
+        dest: /etc/frr/frr.conf
+        
+    - name: kick-it
+      shell: systemctl reload frr
+      
+- hosts: leaf02
+  name: Configure /etc/frr/frr.conf
+  become: yes
+  tasks:
+    - name: Entfernen der alten Datei
+      file:
+        path: '/etc/frr.conf'
+        state: absent
+
+    - copy:
+        src: /home/cumulus/OpenNetworking-002/config/leaf02-frr
+        dest: /etc/frr/frr.conf
+        
+    - name: kick-it
+      shell: systemctl reload frr
+
+- hosts: leaf03
+  name: Configure /etc/frr/frr.conf
+  become: yes
+  tasks:
+    - name: Entfernen der alten Datei
+      file:
+        path: '/etc/frr.conf'
+        state: absent
+
+    - copy:
+        src: /home/cumulus/OpenNetworking-002/config/leaf03-frr
+        dest: /etc/frr/frr.conf
+        
+    - name: kick-it
+      shell: systemctl reload frr
+
+- hosts: leaf04
+  name: Configure /etc/frr/frr.conf
+  become: yes
+  tasks:
+    - name: Entfernen der alten Datei
+      file:
+        path: '/etc/frr.conf'
+        state: absent
+
+    - copy:
+        src: /home/cumulus/OpenNetworking-002/config/leaf04-frr
+        dest: /etc/frr/frr.conf
+        
+    - name: kick-it
+      shell: systemctl reload frr
+
+- hosts: server01
+  name: Configure /e/n/i
+  become: yes
+  tasks:
+    - name: Entfernen der alten Datei
+      file:
+        path: '/etc/network/interfaces'
+        state: absent
+
+    - copy:
+        src: /home/cumulus/OpenNetworking-002/config/server01-if
+        dest: /etc/network/interfaces
+        
+    - name: Apply Interface Configuration Delta
+      shell: ip link set eth1 down
+      
+    - name: Apply Interface Configuration Delta
+      shell: ip link set eth1 up
+      
+     
+- hosts: server02
+  name: Configure /e/n/i
+  become: yes
+  tasks:
+    - name: Entfernen der alten Datei
+      file:
+        path: '/etc/network/interfaces'
+        state: absent
+
+    - copy:
+        src: /home/cumulus/OpenNetworking-002/config/server02-if
+        dest: /etc/network/interfaces
+        
+    - name: Apply Interface Configuration Delta
+      shell: ip link set eth1 down
+      
+    - name: Apply Interface Configuration Delta
+      shell: ip link set eth1 up
