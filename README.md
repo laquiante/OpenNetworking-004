@@ -1,4 +1,6 @@
 # OpenNetworking-003
 Repo für Vagrant Topology-Converter DC-DCI-DC Umgebung mit OOB-Management und Ansible
 
-Ziel: {{var}} und EVPN
+Ziel-01: {{var}} , ok 
+Ziel-02: EVPN
+Ziel-03: ifupdown2, ok
