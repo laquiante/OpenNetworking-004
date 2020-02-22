@@ -49,12 +49,11 @@ graph vx {
  "server02":"eth0" -- "oob-mgmt-switch":"swp3" [left_mac="a0:00:00:00:00:32"]
  "server03":"eth0" -- "oob-mgmt-switch":"swp4" [left_mac="a0:00:00:00:00:33"]
  "server04":"eth0" -- "oob-mgmt-switch":"swp5" [left_mac="a0:00:00:00:00:34"]
- 
- "internet":"eth0" -- "oob-mgmt-switch":"swp6" [left_mac="a0:00:00:00:00:35"]
+
+ "internet":"swp1" -- "exit01":"swp11"
  
  "exit01":"swp51" -- "spine01":"swp10"
  "exit01":"swp52" -- "spine02":"swp10"
- "internet":"swp1" -- "exit01":"swp11"
 
  "leaf01":"eth0" -- "oob-mgmt-switch":"swp7" [left_mac="a0:00:00:00:00:11"]
  "leaf02":"eth0" -- "oob-mgmt-switch":"swp8" [left_mac="a0:00:00:00:00:12"]
