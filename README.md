@@ -1,8 +1,8 @@
-# OpenNetworking-003
-Repo für Vagrant Topology-Converter DC-DCI-DC Umgebung mit OOB-Management und Ansible
+# OpenNetworking-04
+Repo für Kundendiskussion
 
-Ziel-01: {{var}} , ok 
+Ziel-01: Topologie
 
-Ziel-02: EVPN, ok
+Ziel-02: Netzkonfiguration
 
-Ziel-03: ifupdown2, ok
+Ziel-03: Serverkonfiguration
