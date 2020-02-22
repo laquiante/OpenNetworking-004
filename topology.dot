@@ -13,8 +13,8 @@ graph vx {
  "server03" [function="host" os="yk0/ubuntu-xenial" memory="512" config="./helper_scripts/config_server.sh" ]
  "server04" [function="host" os="yk0/ubuntu-xenial" memory="512" config="./helper_scripts/config_server.sh" ]
 
- "backbone" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.7.11" memory="768" config="./helper_scripts/config_switch.sh" ]
- "internet" [function="host" os="yk0/ubuntu-xenial" memory="512" config="./helper_scripts/config_server.sh" ]
+ "edge01" [function="host" os="yk0/ubuntu-xenial" memory="768" config="./helper_scripts/config_server.sh" ]
+ "internet" [function="internet" vagrant="swp48" os="CumulusCommunity/cumulus-vx" version="3.7.11" memory="768" config="./helper_scripts/config_internet.sh" ]
 
  "oob-mgmt-switch" [function="oob-switch" vagrant="eth0" os="CumulusCommunity/cumulus-vx" version="3.7.11" memory="768" config="./helper_scripts/config_oob_switch.sh" ]
  "oob-mgmt-server" [function="oob-server" vagrant="eth0" os="CumulusCommunity/vx_oob_server" version="1.0.4" memory="1024" config="./helper_scripts/config_oob_server.sh" ]
@@ -50,14 +50,19 @@ graph vx {
  "server03":"eth0" -- "oob-mgmt-switch":"swp4" [left_mac="a0:00:00:00:00:33"]
  "server04":"eth0" -- "oob-mgmt-switch":"swp5" [left_mac="a0:00:00:00:00:34"]
  
-  "internet":"eth0" -- "oob-mgmt-switch":"swp6" [left_mac="a0:00:00:00:00:35"]
+ "internet":"eth0" -- "oob-mgmt-switch":"swp6" [left_mac="a0:00:00:00:00:35"]
+ 
+ "exit01":"swp51" -- "spine01":"swp10"
+ "exit01":"swp52" -- "spine02":"swp10"
+ "internet":"swp1" -- "exit01":"swp11"
 
  "leaf01":"eth0" -- "oob-mgmt-switch":"swp7" [left_mac="a0:00:00:00:00:11"]
  "leaf02":"eth0" -- "oob-mgmt-switch":"swp8" [left_mac="a0:00:00:00:00:12"]
  "leaf03":"eth0" -- "oob-mgmt-switch":"swp9" [left_mac="a0:00:00:00:00:13"]
  "leaf04":"eth0" -- "oob-mgmt-switch":"swp10" [left_mac="a0:00:00:00:00:14"]
  
- "backbone":"eth0" -- "oob-mgmt-switch":"swp11" [left_mac="a0:00:00:00:00:15"]
+ "edge01":"eth0" -- "oob-mgmt-switch":"swp14" [left_mac="a0:00:00:00:00:51"]
+ "internet":"eth0" -- "oob-mgmt-switch":"swp15" [left_mac="a0:00:00:00:00:50"]
  
  
  "spine01":"eth0" -- "oob-mgmt-switch":"swp12" [left_mac="a0:00:00:00:00:21"]
