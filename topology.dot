@@ -29,7 +29,7 @@ graph vx {
  "leaf02":"swp52" -- "spine02":"swp2"
  
  "server02":"eth1" -- "leaf01":"swp2" [left_mac="00:00:01:11:11:03"]
- "server02":"eth1" -- "leaf02":"swp2" [left_mac="00:00:01:11:11:04"]
+ "server02":"eth2" -- "leaf02":"swp2" [left_mac="00:00:01:11:11:04"]
 
  "leaf03":"swp51" -- "spine01":"swp3"
  "leaf03":"swp52" -- "spine02":"swp3"
