@@ -43,6 +43,11 @@ graph vx {
  "server04":"eth1" -- "leaf03":"swp2" [left_mac="00:00:01:11:11:07"]
  "server04":"eth2" -- "leaf04":"swp2" [left_mac="00:00:01:11:11:08"]
  
+ "leaf01":"swp49" -- "leaf02":"swp49"
+ "leaf01":"swp50" -- "leaf02":"swp50"
+ "leaf03":"swp49" -- "leaf04":"swp49"
+ "leaf03":"swp50" -- "leaf04":"swp50"
+ 
  "oob-mgmt-server":"eth1" -- "oob-mgmt-switch":"swp1" [right_mac="a0:00:00:00:00:61"]
 
  "server01":"eth0" -- "oob-mgmt-switch":"swp2" [left_mac="a0:00:00:00:00:31"]
