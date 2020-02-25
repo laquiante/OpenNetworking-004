@@ -89,7 +89,7 @@ iface vlan100
     address-virtual 00:00:00:00:00:0A 192.168.100.1/24
     vlan-id 100
     vlan-raw-device bridge
-    vrf-mandant1
+    vrf1
     
 auto vxlan100001
 iface vxlan100001
@@ -98,8 +98,8 @@ iface vxlan100001
     bridge-learning off
     bridge-access 1001
     
-auto vrf-mandant1
-iface vrf-mandant1
+auto vrf1
+iface vrf1
    vrf-table auto
    
 auto vlan1001
@@ -107,4 +107,4 @@ iface vlan4001
   hwaddress 44:39:39:00:10:01
   vlan-id 1001
   vlan-raw-device bridge
-  vrf vrf-mandant1
+  vrf vrf1
