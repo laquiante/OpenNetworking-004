@@ -45,7 +45,7 @@ iface peerlink
 auto peerlink.4094
 iface peerlink.4094
   clagd-peer-ip linklocal
-  clagd-backup-ip 10.0.0.14
+  clagd-backup-ip 10.0.0.13
   clagd-sys-mac 44:39:39:ff:40:95
   clagd-priority 100
 
