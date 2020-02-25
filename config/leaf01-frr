@@ -6,7 +6,7 @@ service integrated-vtysh-config
 log syslog informational
 !
 vrf vrf1
- vni 104001
+ vni 100001
 !
 interface swp51
 !
