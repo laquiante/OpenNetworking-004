@@ -89,7 +89,7 @@ iface vlan100
     address-virtual 00:00:00:00:00:0A 192.168.100.1/24
     vlan-id 100
     vlan-raw-device bridge
-    vrf1
+    vrf vrf1
     
 auto vxlan100001
 iface vxlan100001
