@@ -1,44 +1,110 @@
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
 
-# 05-FEB-2020, ALQ
+# 25-FEB-2020, ALQ
 
 # The loopback network interface
 auto lo
 iface lo inet loopback
   address 10.0.0.14/32
+  clagd-vxlan-anycast-ip 10.0.0.134
 
 # Die OOB Schnittstelle
 auto eth0
 iface eth0 inet dhcp
 
-# Zum Server
+# Zum Server01
 auto swp1
 iface swp1
-    bridge-access 42
+# This is required for Vagrant only
+post-up ip link set swp1 promisc on
+
+# Zum Server02
+auto swp2
+iface swp2
+# This is required for Vagrant only
+post-up ip link set swp1 promisc on
 
 # BGP IPv6
 auto swp51
 iface swp51
 
+# BGP IPv6
+auto swp52
+iface swp52
+
+# CLAG Peerlink bond
+auto peerlink
+iface peerlink
+  mtu 9000
+  bond-slaves swp49 swp50
+
+# CLAG Peerlink L2 interface.
+# This creates VLAN 4094 that only lives on the peerlink bond
+# No other interface will be aware of VLAN 4094
+auto peerlink.4094
+iface peerlink.4094
+  clagd-peer-ip linklocal
+  clagd-backup-ip 10.0.0.14
+  clagd-sys-mac 44:39:39:ff:40:95
+  clagd-priority 100
+
+# Bond to Server01
+auto bond01
+iface bond01
+  mtu 9000
+  bond-slaves swp1
+  bridge-access 100
+  clag-id 1
+
+# Bond to Server02
+auto bond02
+iface bond02
+  mtu 9000
+  bond-slaves swp2
+  bridge-access 100
+  clag-id 2
+
+# Define the bridge for STP
+auto bridge
+iface bridge
+  bridge-vlan-aware yes
+  # bridge-ports includes all ports related to VxLAN and CLAG.
+  # does not include the Peerlink.4094 subinterface
+  bridge-ports bond01 bond02 peerlink vni-100 vxlan100001
+  bridge-vids 100
+  bridge-pvid 1
+
 # VxLAN
-auto vni-42
-iface vni-42
-    vxlan-id 10042
+auto vni-100
+iface vni-100
+    vxlan-id 10100
     vxlan-local-tunnelip 10.0.0.14
     bridge-access 42
 
-# VLAN aware linux bridge
-auto bridge
-iface bridge
-    bridge-ports swp1 vni-42
-    bridge-vids 1 42
-    bridge-vlan-aware yes
-
-# SVI VLAN 42 inkl. anycast IPv4
-auto vlan42
-iface vlan42
-    address 192.168.10.4/24
-    address-virtual 00:00:00:00:00:0A 192.168.10.254/24
-    vlan-id 42
+# SVI VLAN 100 inkl. anycast IPv4
+auto vlan100
+iface vlan100
+    address 192.168.100.14/24
+    address-virtual 00:00:00:00:00:0A 192.168.100.1/24
+    vlan-id 100
     vlan-raw-device bridge
+    vrf vrf1
+    
+auto vxlan100001
+iface vxlan100001
+    vxlan-id 100001
+    vxlan-local-tunnelip 10.0.0.14
+    bridge-learning off
+    bridge-access 1001
+    
+auto vrf1
+iface vrf1
+   vrf-table auto
+   
+auto vlan1001
+iface vlan4001
+  hwaddress 44:39:39:00:10:02
+  vlan-id 1001
+  vlan-raw-device bridge
+  vrf vrf1
