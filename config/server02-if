@@ -6,14 +6,32 @@
 # The loopback network interface
 auto lo
 iface lo inet loopback
-  address 10.0.0.114/32
-
+  address 10.0.0.112/32
+  
 # Die OOB Schnittstelle
 auto eth0
 iface eth0 inet dhcp
 
 auto eth1
-iface eth1 inet static
-    address 192.168.10.14
-    netmask 255.255.255.0
-    gateway 192.168.10.1
+iface eth1 inet manual
+  bond-master bond0
+  # Required for Vagrant
+  post-up ip link set promisc on dev eth1
+
+auto eth2
+iface eth2 inet manual
+  bond-master bond0
+  # Required for Vagrant
+  post-up ip link set promisc on dev eth2
+
+auto bond0
+iface bond0 inet static
+  mtu 9000
+  bond-slaves eth1 eth2
+  bond-mode 802.3ad
+  bond-miimon 100
+  bond-lacp-rate 1
+  bond-min-links 1
+  bond-xmit-hash-policy layer3+4
+  address 192.168.100.202
+  netmask 255.255.255.0
