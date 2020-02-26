@@ -101,6 +101,8 @@
         dest: /etc/frr/daemons
     - name: kick-it
       shell: systemctl restart frr
+   - pause:
+    seconds: 5
       
 - hosts: leaf02
   name: Configure /etc/frr/daemon
