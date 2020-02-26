@@ -25,7 +25,7 @@
   tasks:
     - name: IFs for BGP unmumbered
       copy:
-        src: /home/cumulus/OpenNetworking-004/config/leaf02-if
+        src: /home/cumulus/OpenNetworking-004/config/leaf02-if-leer
         dest: /etc/network/interfaces
     # aktivieren
     - name: Durchstarten der Schnittstelle
