@@ -91,7 +91,7 @@
       
 # FRR Daemon Datei
 
-- hosts: leaf
+- hosts: leaf01
   name: Configure /etc/frr/daemon
   become: yes
   tasks:
@@ -102,7 +102,51 @@
     - name: kick-it
       shell: systemctl restart frr
       
-- hosts: spine
+- hosts: leaf02
+  name: Configure /etc/frr/daemon
+  become: yes
+  tasks:
+    - name: zebra und daemons
+      copy:
+        src: /home/cumulus/OpenNetworking-004/config/daemons
+        dest: /etc/frr/daemons
+    - name: kick-it
+      shell: systemctl restart frr
+      
+- hosts: leaf03
+  name: Configure /etc/frr/daemon
+  become: yes
+  tasks:
+    - name: zebra und daemons
+      copy:
+        src: /home/cumulus/OpenNetworking-004/config/daemons
+        dest: /etc/frr/daemons
+    - name: kick-it
+      shell: systemctl restart frr
+      
+- hosts: leaf04
+  name: Configure /etc/frr/daemon
+  become: yes
+  tasks:
+    - name: zebra und daemons
+      copy:
+        src: /home/cumulus/OpenNetworking-004/config/daemons
+        dest: /etc/frr/daemons
+    - name: kick-it
+      shell: systemctl restart frr
+      
+- hosts: spine01
+  name: Configure /etc/frr/daemon
+  become: yes
+  tasks:
+    - name: zebra und daemons
+      copy:
+        src: /home/cumulus/OpenNetworking-004/config/daemons
+        dest: /etc/frr/daemons
+    - name: kick-it
+      shell: systemctl restart frr
+      
+- hosts: spine02
   name: Configure /etc/frr/daemon
   become: yes
   tasks:
