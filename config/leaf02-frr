@@ -12,7 +12,7 @@ interface swp51
 !
 interface swp52
 !
-router bgp 42000002
+router bgp 420000001
  bgp router-id 10.0.0.12
  bgp bestpath as-path multipath-relax
  neighbor swp51 interface remote-as external
