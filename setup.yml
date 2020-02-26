@@ -8,6 +8,7 @@
 - hosts: leaf01
   name: Schnittstelle fuer BGP unnumbered
   become: yes
+  gather_facts: no
   tasks:
     - name: IFs for BGP unmumbered
       copy:
@@ -22,6 +23,7 @@
 - hosts: leaf02
   name: Schnittstelle fuer BGP unnumbered
   become: yes
+  gather_facts: no
   tasks:
     - name: IFs for BGP unmumbered
       copy:
@@ -36,6 +38,7 @@
 - hosts: leaf03
   name: Schnittstelle fuer BGP unnumbered
   become: yes
+  gather_facts: no
   tasks:
     - name: IFs for BGP unmumbered
       copy:
@@ -50,6 +53,7 @@
 - hosts: leaf04
   name: Schnittstelle fuer BGP unnumbered
   become: yes
+  gather_facts: no
   tasks:
     - name: IFs for BGP unmumbered
       copy:
@@ -66,6 +70,7 @@
 - hosts: spine01
   name: Schnittstelle fuer BGP unnumbered
   become: yes
+  gather_facts: no
   tasks:
     - name: IFs for BGP unmumbered
       copy:
@@ -80,6 +85,7 @@
 - hosts: spine02
   name: Schnittstelle fuer BGP unnumbered
   become: yes
+  gather_facts: no
   tasks:
     - name: IFs for BGP unmumbered
       copy:
@@ -94,6 +100,7 @@
 - hosts: leaf01
   name: Configure /etc/frr/daemon
   become: yes
+  gather_facts: no
   tasks:
     - name: zebra und daemons
       copy:
@@ -105,6 +112,7 @@
 - hosts: leaf04
   name: Configure /etc/frr/daemon
   become: yes
+  gather_facts: no
   tasks:
     - name: zebra und daemons
       copy:
@@ -116,6 +124,7 @@
 - hosts: leaf03
   name: Configure /etc/frr/daemon
   become: yes
+  gather_facts: no
   tasks:
     - name: zebra und daemons
       copy:
@@ -127,6 +136,7 @@
 - hosts: leaf02
   name: Configure /etc/frr/daemon
   become: yes
+  gather_facts: no
   tasks:
     - name: zebra und daemons
       copy:
@@ -138,6 +148,7 @@
 - hosts: spine01
   name: Configure /etc/frr/daemon
   become: yes
+  gather_facts: no
   tasks:
     - name: zebra und daemons
       copy:
@@ -149,6 +160,7 @@
 - hosts: spine02
   name: Configure /etc/frr/daemon
   become: yes
+  gather_facts: no
   tasks:
     - name: zebra und daemons
       copy:
@@ -163,6 +175,7 @@
 - hosts: spine01
   name: Configure /etc/frr/frr.conf
   become: yes
+  gather_facts: no
   tasks:
     - name: Entfernen der alten Datei
       file:
@@ -179,6 +192,7 @@
 - hosts: spine02
   name: Configure /etc/frr/frr.conf
   become: yes
+  gather_facts: no
   tasks:
     - name: Entfernen der alten Datei
       file:
@@ -195,6 +209,7 @@
 - hosts: leaf01
   name: Configure /etc/frr/frr.conf
   become: yes
+  gather_facts: no
   tasks:
     - name: Entfernen der alten Datei
       file:
@@ -211,6 +226,7 @@
 - hosts: leaf02
   name: Configure /etc/frr/frr.conf
   become: yes
+  gather_facts: no
   tasks:
     - name: Entfernen der alten Datei
       file:
@@ -227,6 +243,7 @@
 - hosts: leaf03
   name: Configure /etc/frr/frr.conf
   become: yes
+  gather_facts: no
   tasks:
     - name: Entfernen der alten Datei
       file:
@@ -243,6 +260,7 @@
 - hosts: leaf04
   name: Configure /etc/frr/frr.conf
   become: yes
+  gather_facts: no
   tasks:
     - name: Entfernen der alten Datei
       file:
@@ -259,6 +277,7 @@
 - hosts: server01
   name: Configure /e/n/i
   become: yes
+  gather_facts: no
   tasks:
   
     - apt:
@@ -282,6 +301,7 @@
 - hosts: server02
   name: Configure /e/n/i
   become: yes
+  gather_facts: no
   tasks:
   
     - apt: 
@@ -305,6 +325,7 @@
 - hosts: server03
   name: Configure /e/n/i
   become: yes
+  gather_facts: no
   tasks:
   
     - apt: 
@@ -328,6 +349,7 @@
 - hosts: server04
   name: Configure /e/n/i
   become: yes
+  gather_facts: no
   tasks:
   
     - apt: 
