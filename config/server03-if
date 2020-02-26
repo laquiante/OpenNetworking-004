@@ -33,5 +33,5 @@ iface bond0 inet static
   bond-lacp-rate 1
   bond-min-links 1
   bond-xmit-hash-policy layer3+4
-  address 192.168.100.23
+  address 192.168.100.203
   netmask 255.255.255.0
