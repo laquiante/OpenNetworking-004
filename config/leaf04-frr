@@ -25,7 +25,7 @@ router bgp 420000002
  !
  address-family l2vpn evpn
   neighbor swp51 activate
-  neighobr swp52 activate
+  neighbor swp52 activate
   advertise-all-vni
  exit-address-family
  !
