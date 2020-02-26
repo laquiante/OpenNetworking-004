@@ -80,7 +80,7 @@ auto vni-100
 iface vni-100
     vxlan-id 10100
     vxlan-local-tunnelip 10.0.0.12
-    bridge-access 42
+    bridge-access 100
 
 # SVI VLAN 100 inkl. anycast IPv4
 auto vlan100
