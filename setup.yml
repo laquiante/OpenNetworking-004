@@ -124,16 +124,16 @@
     - name: kick-it
       shell: systemctl restart frr
       
-- hosts: leaf02
-  name: Configure /etc/frr/daemon
-  become: yes
-  tasks:
-    - name: zebra und daemons
-      copy:
-        src: /home/cumulus/OpenNetworking-004/config/daemons
-        dest: /etc/frr/daemons
-    - name: kick-it
-      shell: systemctl restart frr
+#- hosts: leaf02
+#  name: Configure /etc/frr/daemon
+#  become: yes
+#  tasks:
+#    - name: zebra und daemons
+#      copy:
+#        src: /home/cumulus/OpenNetworking-004/config/daemons
+#        dest: /etc/frr/daemons
+#    - name: kick-it
+#      shell: systemctl restart frr
       
 - hosts: spine01
   name: Configure /etc/frr/daemon
@@ -208,21 +208,21 @@
     - name: kick-it
       shell: systemctl reload frr
       
-- hosts: leaf02
-  name: Configure /etc/frr/frr.conf
-  become: yes
-  tasks:
-    - name: Entfernen der alten Datei
-      file:
-        path: '/etc/frr.conf'
-        state: absent
-
-    - copy:
-        src: /home/cumulus/OpenNetworking-004/config/leaf02-frr
-        dest: /etc/frr/frr.conf
-        
-    - name: kick-it
-      shell: systemctl reload frr
+#- hosts: leaf02
+#  name: Configure /etc/frr/frr.conf
+#  become: yes
+#  tasks:
+#    - name: Entfernen der alten Datei
+#      file:
+#        path: '/etc/frr.conf'
+#        state: absent
+#
+#    - copy:
+#        src: /home/cumulus/OpenNetworking-004/config/leaf02-frr
+#        dest: /etc/frr/frr.conf
+#        
+#    - name: kick-it
+#      shell: systemctl reload frr
 
 - hosts: leaf03
   name: Configure /etc/frr/frr.conf
