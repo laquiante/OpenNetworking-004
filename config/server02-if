@@ -1,7 +1,7 @@
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
 
-# 06-FEB-2020, ALQ
+# 26-FEB-2020, ALQ
 
 # The loopback network interface
 auto lo
