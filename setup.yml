@@ -1,7 +1,23 @@
 ---
 
-# 26-FEB-2020, ALQ
+# 27-FEB-2020, ALQ
 # Leaf-Spine VLAN 100 für OpenStack
+# mit exit01 leaf
+
+# Exit01 IF Datei
+
+- hosts: exit01
+  name: Schnittstelle fuer BGP unnumbered
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: IFs for BGP unmumbered
+      copy:
+        src: /home/cumulus/OpenNetworking-004/config/exit01-if
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: Durchstarten der Schnittstelle
+      shell: /sbin/ifreload -a
 
 # Leaf01  IF Datei
 
@@ -97,6 +113,18 @@
       
 # FRR Daemon Datei
 
+- hosts: exit01
+  name: Configure /etc/frr/daemon
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: zebra und daemons
+      copy:
+        src: /home/cumulus/OpenNetworking-004/config/daemons
+        dest: /etc/frr/daemons
+    - name: kick-it
+      shell: systemctl restart frr
+
 - hosts: leaf01
   name: Configure /etc/frr/daemon
   become: yes
@@ -171,6 +199,23 @@
       
 # Einspielen der Router Konfiguration
 # und "reloading" des FRR-Daemons
+
+- hosts: exit01
+  name: Configure /etc/frr/frr.conf
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: Entfernen der alten Datei
+      file:
+        path: '/etc/frr.conf'
+        state: absent
+
+    - copy:
+        src: /home/cumulus/OpenNetworking-004/config/exit01-frr
+        dest: /etc/frr/frr.conf
+        
+    - name: kick-it
+      shell: systemctl reload frr
 
 - hosts: spine01
   name: Configure /etc/frr/frr.conf
