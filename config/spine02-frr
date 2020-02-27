@@ -9,13 +9,14 @@ interface swp1
 !
 interface swp2
 !
-router bgp 4200001000
+router bgp 4200000000
  bgp router-id 10.0.0.22
  bgp bestpath as-path multipath-relax
  neighbor swp1 interface remote-as external
  neighbor swp2 interface remote-as external
  neighbor swp3 interface remote-as external
  neighbor swp4 interface remote-as external
+ neighbor swp10 interface remote-as external
  !
  address-family ipv4 unicast
   redistribute connected  route-map LO_ROUTES
@@ -26,6 +27,7 @@ router bgp 4200001000
   neighbor swp2 activate
   neighbor swp3 activate
   neighbor swp4 activate
+  neighbor swp10 activate
   advertise-all-vni
  exit-address-family
  !
