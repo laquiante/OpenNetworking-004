@@ -15,6 +15,27 @@ iface eth0 inet dhcp
 # zum Internet
 auto swp11
 iface swp11
+  vrf vrf2
+
+# Mandant mit Internet
+auto vrf1
+iface vrf1
+   vrf-table auto
+   
+# Internet
+auto vrf2
+iface vrf2
+   vrf-table auto
+
+# Mandant ohne Internet
+auto vrf3
+iface vrf3
+   vrf-table auto
+
+# zum Internet
+auto swp11
+iface swp11
+  vrf vrf2
 
 # BGP IPv6
 auto swp51
@@ -23,3 +44,25 @@ iface swp51
 # BGP IPv6
 auto swp52
 iface swp52
+
+auto bridge
+iface bridge
+  bridge-vlan-aware yes
+  # bridge-ports includes all ports related to VxLAN and CLAG.
+  # does not include the Peerlink.4094 subinterface
+  bridge-ports vxlan100001
+  bridge-vids 100
+  bridge-pvid 1
+  
+auto vxlan100001
+iface vxlan100001
+    vxlan-id 100001
+    vxlan-local-tunnelip 10.0.0.15
+    bridge-learning off
+    bridge-access 1001
+
+auto vlan1001
+iface vlan1001
+  vlan-raw-device bridge
+  vlan-id 1001
+  vrf vrf1
