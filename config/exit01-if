@@ -1,7 +1,8 @@
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
 
-# 27-FEB-2020, ALQ
+# 01-Maerz-2020, ALQ
+# Kundendiskussion - VRF
 
 # The loopback network interface
 auto lo
