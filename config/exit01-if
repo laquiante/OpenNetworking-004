@@ -1,8 +1,7 @@
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
 
-# 01-Maerz-2020, ALQ
-# Kundendiskussion - VRF
+# 06-MAR-2020, ALQ
 
 # The loopback network interface
 auto lo
@@ -22,7 +21,7 @@ iface swp11
 auto vrf1
 iface vrf1
    vrf-table auto
-   
+
 # Internet
 auto vrf2
 iface vrf2
@@ -32,11 +31,6 @@ iface vrf2
 auto vrf3
 iface vrf3
    vrf-table auto
-
-# zum Internet
-auto swp11
-iface swp11
-  vrf vrf2
 
 # BGP IPv6
 auto swp51
@@ -50,9 +44,8 @@ auto bridge
 iface bridge
   bridge-vlan-aware yes
   # bridge-ports includes all ports related to VxLAN and CLAG.
-  # does not include the Peerlink.4094 subinterface
   bridge-ports vxlan100001
-  bridge-vids 100
+  bridge-vids 1001
   bridge-pvid 1
   
 auto vxlan100001
