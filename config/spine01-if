@@ -1,7 +1,7 @@
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
 
-# 27-FEB-2020, ALQ
+# 05-MAR-2020, ALQ
 
 # The loopback network interface
 auto lo
@@ -14,7 +14,7 @@ iface eth0 inet dhcp
 
 auto swp1
 iface swp1
-    
+
 auto swp2
 iface swp2
 
