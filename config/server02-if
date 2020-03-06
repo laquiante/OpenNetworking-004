@@ -1,37 +1,27 @@
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
 
-# 26-FEB-2020, ALQ
+# 02-MAR-2020, ALQ
 
 # The loopback network interface
 auto lo
 iface lo inet loopback
   address 10.0.0.112/32
-  
+
 # Die OOB Schnittstelle
 auto eth0
 iface eth0 inet dhcp
 
 auto eth1
-iface eth1 inet manual
-  bond-master bond0
-  # Required for Vagrant
-  post-up ip link set promisc on dev eth1
+iface eth1 inet static
+  address 172.21.0.1
+  netmask 255.255.255.252
+#  post-up ip link set promisc on dev eth1
+#  besser FFR installieren, sonst routen setzten
 
 auto eth2
-iface eth2 inet manual
-  bond-master bond0
-  # Required for Vagrant
-  post-up ip link set promisc on dev eth2
-
-auto bond0
-iface bond0 inet static
-  mtu 9000
-  bond-slaves eth1 eth2
-  bond-mode 802.3ad
-  bond-miimon 100
-  bond-lacp-rate 1
-  bond-min-links 1
-  bond-xmit-hash-policy layer3+4
-  address 192.168.100.202
-  netmask 255.255.255.0
+iface eth2 inet static
+  address 172.22.0.1
+  netmask 255.255.255.252
+#  post-up ip link set promisc on dev eth2
+# nicht getested
