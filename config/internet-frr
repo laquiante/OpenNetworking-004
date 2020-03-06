@@ -5,13 +5,10 @@ service integrated-vtysh-config
 !
 log syslog informational
 !
-router bgp 4200000004
+router bgp 65000
  neighbor swp1 interface remote-as external
  !
  address-family ipv4 unicast
   redistribute connected
   neighbor swp1 default-originate
  exit-address-family
-!
-line vty
-!
